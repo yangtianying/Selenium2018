@@ -1,0 +1,40 @@
+测试环境的问题：
+1、首先确定是Selenium的代码问题，还是环境的问题
+   环境的问题：1、端口是不是修改了，2、任务管理器apache是不是启动了
+
+auto2018使用注意事项
+1.参照 com.webtest.demo 的例子
+2.常用方法进行封装 例如 登录，添加影片
+3.数据驱动，
+txt,excel 第一行是表头,txt,用tab分割
+
+Data provider mismatch
+@Test(dataProvider="txt") 方法的参数与，数据文件的列不对应
+建议在 NSDataProvider先进行调试
+
+在excel如果报 Data provider mismatch，把后边无关的列删除，只是清空是没有用的
+@Test(dataProvider="txt",dataProviderClass=NSDataProvider.class)
+4.在新项目中，需要把lib所有的包都build path
+5.log4j2.xml，build.xml，testng.xml的关系
+
+log4j2.xml 在src中，作用是记录日志
+build.xml，testng.xml 在项目的根目录下
+如果在项目中log4j.properties是log4j的第一版本
+
+build.xml ant的配置文件，用来编译src所有的文件，运行testng.xml，如果报编码错误UTF-8，需要修改所有的.java文件都是utf-8格式，
+testng.xml 实际运行哪些测试类
+6.监听器在testng.xml中添加
+
+<listeners>
+		<listener class-name="com.webtest.core.WebTestListener" />
+	</listeners>
+
+熟悉过程
+1、先模仿，登录（成功，失败），添加电影，添加演员 ，集成一起来运行 4个类
+2、考虑常用的操作进行封装
+3、在添加电影 实现数据驱动（5个参数）
+4、在build.xml+testng.xml中集成来运行
+
+
+
+
